@@ -5,11 +5,13 @@
   padding: 0;
 }
 
-/* Base page styles */
+/* Base page styles with NASA branding */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  /* NASA uses system font stack similar to their design system */
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  background-color: #f1f1f1; /* NASA neutral-cool-2 */
   padding: 20px;
+  color: #1b1b1b; /* NASA ink (dark text) */
 }
 
 /* Centered container */
@@ -18,7 +20,7 @@ body {
   margin: 0 auto;
 }
 
-/* Header */
+/* Header with NASA branding */
 .site-header {
   display: flex;
   align-items: center;
@@ -26,12 +28,17 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  background: linear-gradient(135deg, #0b3d91 0%, #1c4d99 100%); /* NASA blue */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(11, 61, 145, 0.2);
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: bold;
-  color: #212121;
+  color: #ffffff; /* White text on NASA blue */
+  font-size: 2rem;
+  letter-spacing: 0.5px;
 }
 
 /* Logo */
@@ -64,14 +71,25 @@ button {
   width: 100%;
 }
 
-/* Button specific */
+/* Button specific - NASA branding */
 button {
-  background-color: #d3d3d3;
-  color: black;
+  background-color: #0b3d91; /* NASA blue */
+  color: #ffffff;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid #0b3d91;
 }
+
 button:hover {
-  background-color: #bfbfbf;
+  background-color: #061f4a; /* Darker NASA blue */
+  border-color: #061f4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(11, 61, 145, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 /* Stack horizontally on wider screens */
@@ -87,6 +105,41 @@ button:hover {
   }
 }
 
+/* Space fact section with NASA branding */
+.space-fact {
+  background: linear-gradient(180deg, #0b3d91 0%, #1c4d99 50%, #2a5aa8 100%); /* NASA blue fading down */
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 0 20px 20px 20px;
+  box-shadow: 0 4px 12px rgba(11, 61, 145, 0.3);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid #fc3d21; /* NASA red border at bottom */
+}
+
+.space-fact h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.space-fact p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #f1f1f1;
+}
+
+@media (min-width: 600px) {
+  .space-fact {
+    margin: 0 0 20px 0;
+  }
+}
+
 /* Gallery flex container */
 .gallery {
   display: flex;
@@ -96,7 +149,7 @@ button:hover {
   justify-content: center;
 }
 
-/* Gallery items */
+/* Gallery items with NASA styling */
 .gallery-item {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
@@ -105,9 +158,18 @@ button:hover {
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow: hidden;
+  overflow: hidden; /* Important: keeps zoomed image within bounds */
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.gallery-item:hover {
+  box-shadow: 0 4px 12px rgba(11, 61, 145, 0.25); /* NASA blue shadow */
+  border-color: #0b3d91; /* NASA blue border */
+  transform: translateY(-2px);
 }
 
 /* Three columns on wider screens */
@@ -122,6 +184,15 @@ button:hover {
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item {
+  overflow: hidden;
 }
 
 .gallery-item p {
@@ -130,15 +201,253 @@ button:hover {
   font-size: 14px;
 }
 
-/* Placeholder content */
+.gallery-item .card-title {
+  font-weight: 600;
+  color: #0b3d91; /* NASA blue */
+  font-size: 16px;
+}
+
+.gallery-item .card-date {
+  color: #5b616b; /* NASA base color */
+  font-size: 13px;
+}
+
+/* Placeholder content with NASA styling */
 .placeholder {
   flex: 1 1 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: #5b616b; /* NASA base color */
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #d9e8f6; /* NASA cool-blue-10 */
 }
 
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+  color: #0b3d91; /* NASA blue */
+}
+
+/* Modal styles */
+.modal.hidden { 
+  display: none; 
+}
+
+.modal { 
+  position: fixed; 
+  inset: 0; 
+  z-index: 50; 
+  display: block; 
+}
+
+.modal-backdrop { 
+  position: absolute; 
+  inset: 0; 
+  background: rgba(11, 61, 145, 0.85); /* NASA blue backdrop */
+}
+
+.modal-content {
+  position: relative;
+  max-width: 900px;
+  max-height: 90vh;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  z-index: 60;
+  box-shadow: 0 8px 20px rgba(11, 61, 145, 0.4);
+  overflow-y: auto;
+  border-top: 4px solid #fc3d21; /* NASA red accent */
+}
+
+.modal-close { 
+  position: absolute; 
+  top: 1rem; 
+  right: 1rem; 
+  background: #f1f1f1; 
+  border: none; 
+  font-size: 24px; 
+  cursor: pointer; 
+  color: #1b1b1b;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #fc3d21; /* NASA red */
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-date {
+  color: #5b616b; /* NASA base color */
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+#modalTitle {
+  color: #0b3d91; /* NASA blue */
+  margin-bottom: 0.5rem;
+}
+
+.modal-media {
+  margin: 1rem 0;
+}
+
+.modal-media img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.modal-media iframe {
+  max-width: 100%;
+}
+
+.modal-explanation {
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.modal-hdlink {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #0b3d91; /* NASA blue */
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid #0b3d91;
+}
+
+.modal-hdlink:hover {
+  background: #fc3d21; /* NASA red */
+  border-color: #fc3d21;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(252, 61, 33, 0.3);
+}
+
+/* Video thumbnail overlay */
+.video-thumb { 
+  position: relative; 
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.video-thumb img {
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .video-thumb img {
+  transform: scale(1.05);
+}
+
+.play-overlay { 
+  position: absolute; 
+  inset: 0; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 48px; 
+  color: rgba(255,255,255,0.9); 
+  pointer-events: none;
+  background: rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover .play-overlay {
+  background: rgba(0,0,0,0.4);
+  font-size: 56px;
+}
+
+/* Video badge to identify video entries */
+.video-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fc3d21; /* NASA red */
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.video-link {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f1f1f1 0%, #e1e8f0 100%);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.video-icon {
+  font-size: 48px;
+  margin-bottom: 1rem;
+}
+
+.video-link a {
+  color: #0b3d91; /* NASA blue */
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #0b3d91;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.video-link a:hover {
+  color: #fc3d21; /* NASA red */
+  border-bottom-color: #fc3d21;
+  transform: translateY(-2px);
+}
+
+/* Video modal styling */
+.video-modal-link {
+  text-align: center;
+  padding: 2rem;
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+.video-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #0b3d91; /* NASA blue */
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 2px solid #0b3d91;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid #0b3d91 !important;
+}
+
+.video-button:hover {
+  background: #fc3d21; /* NASA red */
+  border-color: #fc3d21;
+  border-bottom-color: #fc3d21 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(252, 61, 33, 0.3);
+}
+
+.unknown-media {
+  padding: 2rem;
+  text-align: center;
+  color: #5b616b; /* NASA base color */
+  background: #f1f1f1;
+  border-radius: 4px;
 }
